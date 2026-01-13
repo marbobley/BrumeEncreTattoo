@@ -148,3 +148,43 @@ footer {
 .portfolio-preview .portfolio-item:hover img {
     transform: scale(1.05);
 }
+
+/* Contact Page Enhancements */
+.icon-box {
+    width: 45px;
+    height: 45px;
+    background-color: rgba(86, 72, 107, 0.1);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--primary-color);
+}
+
+.contact-form-section {
+    border-top: 5px solid var(--primary-color);
+}
+
+.form-control:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 0.25rem rgba(86, 72, 107, 0.25);
+}
+
+.useful-info-section .badge {
+    padding: 0.6em 0.8em;
+    font-size: 0.9rem;
+    background-color: var(--primary-color) !important;
+}
+
+.useful-info-section .list-group-item {
+    border-color: rgba(0,0,0,0.05);
+    transition: background-color 0.2s;
+}
+
+.useful-info-section .list-group-item:hover {
+    background-color: rgba(86, 72, 107, 0.02);
+}
+
+.divider {
+    border-radius: 2px;
+}

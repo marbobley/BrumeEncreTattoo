@@ -4,42 +4,127 @@
 
 {% block body %}
 <div class="container py-5">
+    {% for label, messages in app.flashes %}
+        {% for message in messages %}
+            <div class="alert alert-{{ label }} alert-dismissible fade show" role="alert">
+                {{ message }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        {% endfor %}
+    {% endfor %}
+
     <div class="row justify-content-center">
         <div class="col-md-10">
-            <h1 class="text-center mb-4">Brume d’encre tattoo</h1>
-            <h1 class="text-center mb-4">-</h1>
-            <h1 class="text-center mb-4">Contacte moi</h1>
+            <header class="text-center mb-5">
+                <h1 class="display-4 fw-bold mb-2">Brume d’encre tattoo</h1>
+                <p class="h3 text-muted">Contacte moi</p>
+                <div class="divider mx-auto my-4" style="width: 60px; height: 3px; background-color: var(--primary-color);"></div>
+            </header>
 
-            <div class="contact-intro mb-5">
-                <p class="lead">Ouvert sur rendez-vous, le studio privé Brume d’encre tattoo t’accueille sur la commune d’Aniane</p>
-                <p>Proche du pont du diable (34150), de Saint-Guilhem le Désert (34150) et à 30 minutes de Montpellier (34000)</p>
+            <div class="row mb-5">
+                <div class="col-lg-6 mb-4 mb-lg-0">
+                    <div class="contact-info h-100 p-4 bg-white shadow-sm rounded border-start border-4" style="border-left-color: var(--primary-color) !important;">
+                        <h2 class="h4 mb-4">Le Studio</h2>
+                        <p class="lead">Ouvert sur rendez-vous, le studio privé Brume d’encre tattoo t’accueille sur la commune d’Aniane.</p>
+                        <p class="text-muted small">Proche du pont du diable (34150), de Saint-Guilhem le Désert (34150) et à 30 minutes de Montpellier (34000).</p>
 
-                <address class="mt-4">
-                    <strong>47 Boulevard Saint-Jean</strong><br>
-                    34150 Aniane<br>
-                    <a href="mailto:contact@brumedencre-tattoo.fr">contact@brumedencre-tattoo.fr</a>
-                </address>
+                        <div class="mt-4">
+                            <div class="d-flex align-items-center mb-3">
+                                <div class="icon-box me-3">
+                                    <i class="fas fa-location-dot fa-lg"></i>
+                                </div>
+                                <address class="mb-0">
+                                    <strong>47 Boulevard Saint-Jean</strong><br>
+                                    34150 Aniane
+                                </address>
+                            </div>
+                            <div class="d-flex align-items-center mb-3">
+                                <div class="icon-box me-3">
+                                    <i class="fas fa-envelope fa-lg"></i>
+                                </div>
+                                <a href="mailto:contact@brumedencre-tattoo.fr" class="text-decoration-none text-dark">contact@brumedencre-tattoo.fr</a>
+                            </div>
+                            <div class="d-flex align-items-center">
+                                <div class="icon-box me-3">
+                                    <i class="fab fa-instagram fa-lg"></i>
+                                </div>
+                                <a href="https://www.instagram.com/brumedencre_tattoo/?hl=fr" target="_blank" class="text-decoration-none text-dark">@brumedencre_tattoo</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="map-container shadow-sm rounded overflow-hidden h-100" style="min-height: 300px;">
+                        {{ ux_map(map, {style: 'height: 100%; width: 100%; min-height: 300px;'}) }}
+                    </div>
+                </div>
             </div>
 
-            <div class="map-container mb-5 shadow-sm rounded overflow-hidden">
-                {{ ux_map(map, {style: 'height: 500px; width: 100%;'}) }}
+            <div class="contact-form-section bg-white p-4 p-md-5 shadow-sm rounded mb-5">
+                <h2 class="text-center mb-4">Envoyez-moi un message</h2>
+                <p class="text-center mb-5">Pour prendre contact avec moi, tu peux m’envoyer un message via les réseaux sociaux (<a href="https://www.instagram.com/brumedencre_tattoo/?hl=fr" target="_blank" class="fw-bold">Instagram</a> ou <a href="https://www.facebook.com/monatatoueuse" target="_blank" class="fw-bold">Facebook</a>) ou utiliser le formulaire ci-dessous.</p>
+
+                <form action="#" method="POST" class="row g-3">
+                    <div class="col-md-6">
+                        <label for="name" class="form-label">Nom complet</label>
+                        <input type="text" class="form-control" id="name" name="name" required placeholder="Votre nom">
+                    </div>
+                    <div class="col-md-6">
+                        <label for="email" class="form-label">Email</label>
+                        <input type="email" class="form-control" id="email" name="email" required placeholder="votre@email.com">
+                    </div>
+                    <div class="col-12">
+                        <label for="subject" class="form-label">Sujet</label>
+                        <input type="text" class="form-control" id="subject" name="subject" required placeholder="L'objet de votre message">
+                    </div>
+                    <div class="col-12">
+                        <label for="message" class="form-label">Message</label>
+                        <textarea class="form-control" id="message" name="message" rows="5" required placeholder="Décrivez votre projet..."></textarea>
+                    </div>
+                    <div class="col-12 text-center mt-4">
+                        <button type="submit" class="btn btn-primary btn-lg px-5">Envoyer le message</button>
+                    </div>
+                </form>
             </div>
 
-            <div class="contact-details">
-                <p>Pour prendre contact avec moi, tu peux m’envoyer un message en passant par un de mes réseaux sociaux (<a href="https://www.instagram.com/brumedencre_tattoo/?hl=fr" target="_blank">insta</a> ou <a href="https://www.facebook.com/monatatoueuse" target="_blank">fb</a>) ou me contacter ici via le formulaire, je répondrais au plus vite !</p>
+            <div class="useful-info-section mb-5">
+                <div class="card border-0 shadow-sm overflow-hidden">
+                    <div class="card-header bg-dark text-white p-3">
+                        <h3 class="h5 mb-0"><i class="fas fa-lightbulb me-2 text-warning"></i>Les infos utiles pour votre projet</h3>
+                    </div>
+                    <div class="card-body p-0">
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item d-flex align-items-start p-3">
+                                <span class="badge bg-primary rounded-pill me-3">1</span>
+                                <div>Quelle taille en centimètre environ tu aimerais ton projet ?</div>
+                            </li>
+                            <li class="list-group-item d-flex align-items-start p-3">
+                                <span class="badge bg-primary rounded-pill me-3">2</span>
+                                <div>Sur quelle zone ? (soit le plus précis possible par exemple pour l’avant bras ou tout le tour ou intérieur ou extérieur)</div>
+                            </li>
+                            <li class="list-group-item d-flex align-items-start p-3">
+                                <span class="badge bg-primary rounded-pill me-3">3</span>
+                                <div>En noir et gris, avec juste une touche de couleur, ou full colors ?</div>
+                            </li>
+                            <li class="list-group-item d-flex align-items-start p-3">
+                                <span class="badge bg-primary rounded-pill me-3">4</span>
+                                <div>Si tu le sais, quel style tu voudrais ? (Par exemple réaliste, croquis ou ornemental…)</div>
+                            </li>
+                            <li class="list-group-item d-flex align-items-start p-3">
+                                <span class="badge bg-primary rounded-pill me-3">5</span>
+                                <div>Si tu as des photos d’inspiration ou un petit croquis, ajoute les pour mieux comprendre ton projet !</div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
 
-                <p>On peut discuter de ton projet et échanger sur des idées pour faire une estimation par message si tu me fournis toutes les info ou sinon on peut aussi prendre un rdv au shop pour discuter en direct de ton futur tatouage !</p>
-
-                <h3 class="mt-5 mb-4">Les info utiles :</h3>
-                <ul class="list-group list-group-flush mb-4">
-                    <li class="list-group-item">Quelle taille en centimètre environs tu aimerais ton projet ?</li>
-                    <li class="list-group-item">Sur quelle zone ? (soit le plus précis possible par exemple pour l’avant bras ou tout le tour ou intérieur ou extérieur)</li>
-                    <li class="list-group-item">En noir et gris, avec juste une touche de couleur, ou full colors ?</li>
-                    <li class="list-group-item">Si tu le sais, quel style tu voudrais ? (Par exemple pour un portrait de loup si c’est plutôt réaliste ou croquis ou ornemental…)</li>
-                    <li class="list-group-item">Si tu as des photos d’inspiration ou un petit croquis, ajoute les en pièce-jointe pour mieux comprendre ton projet !</li>
-                </ul>
-
-                <p class="mt-4">Tu peux retrouver mes différents projets <a href="{{ path('app_portfolio') }}">ici</a>, ou sur <a href="https://www.instagram.com/brumedencre_tattoo/?hl=fr" target="_blank">insta</a> si ça peut te donner des idées !</p>
+            <div class="text-center">
+                <p>On peut discuter de ton projet et échanger sur des idées pour faire une estimation par message ou prendre un rdv au shop pour discuter en direct !</p>
+                <p class="mt-4">
+                    Tu peux retrouver mes différents projets <a href="{{ path('app_portfolio') }}" class="btn btn-sm btn-outline-secondary ms-2">Galerie</a>
+                    ou sur <a href="https://www.instagram.com/brumedencre_tattoo/?hl=fr" target="_blank" class="btn btn-sm btn-outline-secondary ms-2"><i class="fab fa-instagram me-1"></i>Instagram</a>
+                </p>
             </div>
         </div>
     </div>

@@ -12,11 +12,21 @@ use Symfony\UX\Map\Map;
 use Symfony\UX\Map\Marker;
 use Symfony\UX\Map\Point;
 
+use Symfony\Component\HttpFoundation\Request;
+
 final class ContactController extends AbstractController
 {
-    #[Route('/contact', name: 'app_contact')]
-    public function index(): Response
+    #[Route('/contact', name: 'app_contact', methods: ['GET', 'POST'])]
+    public function index(Request $request): Response
     {
+        if ($request->isMethod('POST')) {
+            // Ici, vous pourriez ajouter la logique d'envoi d'email
+            // Pour l'instant, on ajoute juste un message flash de succès
+            $this->addFlash('success', 'Merci ! Votre message a bien été envoyé. Je reviendrai vers vous dès que possible.');
+
+            return $this->redirectToRoute('app_contact');
+        }
+
         $point = new Point(43.68551114513038, 3.5850781187172367);
         $map = (new Map('default'))
         ->center($point)
