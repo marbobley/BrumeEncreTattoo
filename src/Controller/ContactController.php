@@ -2,7 +2,9 @@
 
 namespace App\Controller;
 
+use App\Form\ContactType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\UX\Map\Bridge\Leaflet\LeafletOptions;
@@ -12,15 +14,16 @@ use Symfony\UX\Map\Map;
 use Symfony\UX\Map\Marker;
 use Symfony\UX\Map\Point;
 
-use Symfony\Component\HttpFoundation\Request;
-
 final class ContactController extends AbstractController
 {
     #[Route('/contact', name: 'app_contact', methods: ['GET', 'POST'])]
     public function index(Request $request): Response
     {
-        if ($request->isMethod('POST')) {
-            // Ici, vous pourriez ajouter la logique d'envoi d'email
+        $form = $this->createForm(ContactType::class);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            // Ici, vous pourriez ajouter la logique d'envoi d'email avec $form->getData()
             // Pour l'instant, on ajoute juste un message flash de succès
             $this->addFlash('success', 'Merci ! Votre message a bien été envoyé. Je reviendrai vers vous dès que possible.');
 
@@ -42,6 +45,7 @@ final class ContactController extends AbstractController
 
         return $this->render('contact/index.html.twig', [
             'map' => $map,
+            'contactForm' => $form->createView(),
         ]);
     }
 }

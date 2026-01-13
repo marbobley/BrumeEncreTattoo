@@ -64,27 +64,31 @@
                 <h2 class="text-center mb-4">Envoyez-moi un message</h2>
                 <p class="text-center mb-5">Pour prendre contact avec moi, tu peux m’envoyer un message via les réseaux sociaux (<a href="https://www.instagram.com/brumedencre_tattoo/?hl=fr" target="_blank" class="fw-bold">Instagram</a> ou <a href="https://www.facebook.com/monatatoueuse" target="_blank" class="fw-bold">Facebook</a>) ou utiliser le formulaire ci-dessous.</p>
 
-                <form action="#" method="POST" class="row g-3">
+                {{ form_start(contactForm, {'attr': {'class': 'row g-3'}}) }}
                     <div class="col-md-6">
-                        <label for="name" class="form-label">Nom complet</label>
-                        <input type="text" class="form-control" id="name" name="name" required placeholder="Votre nom">
+                        {{ form_label(contactForm.name, null, {'label_attr': {'class': 'form-label'}}) }}
+                        {{ form_widget(contactForm.name, {'attr': {'class': 'form-control'}}) }}
+                        {{ form_errors(contactForm.name) }}
                     </div>
                     <div class="col-md-6">
-                        <label for="email" class="form-label">Email</label>
-                        <input type="email" class="form-control" id="email" name="email" required placeholder="votre@email.com">
+                        {{ form_label(contactForm.email, null, {'label_attr': {'class': 'form-label'}}) }}
+                        {{ form_widget(contactForm.email, {'attr': {'class': 'form-control'}}) }}
+                        {{ form_errors(contactForm.email) }}
                     </div>
                     <div class="col-12">
-                        <label for="subject" class="form-label">Sujet</label>
-                        <input type="text" class="form-control" id="subject" name="subject" required placeholder="L'objet de votre message">
+                        {{ form_label(contactForm.subject, null, {'label_attr': {'class': 'form-label'}}) }}
+                        {{ form_widget(contactForm.subject, {'attr': {'class': 'form-control'}}) }}
+                        {{ form_errors(contactForm.subject) }}
                     </div>
                     <div class="col-12">
-                        <label for="message" class="form-label">Message</label>
-                        <textarea class="form-control" id="message" name="message" rows="5" required placeholder="Décrivez votre projet..."></textarea>
+                        {{ form_label(contactForm.message, null, {'label_attr': {'class': 'form-label'}}) }}
+                        {{ form_widget(contactForm.message, {'attr': {'class': 'form-control'}}) }}
+                        {{ form_errors(contactForm.message) }}
                     </div>
                     <div class="col-12 text-center mt-4">
                         <button type="submit" class="btn btn-primary btn-lg px-5">Envoyer le message</button>
                     </div>
-                </form>
+                {{ form_end(contactForm) }}
             </div>
 
             <div class="useful-info-section mb-5">
