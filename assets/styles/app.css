@@ -35,11 +35,12 @@ h2, h3, h4, h5, h6, .navbar-brand {
 .navbar-dark .navbar-nav .nav-link {
     color: var(--text-color) !important;
     font-weight: 500;
+    font-size: 1.1rem;
 }
 
 .navbar-brand {
     color: var(--primary-color) !important;
-    font-size: 1.5rem;
+    font-size: 1.8rem;
     font-weight: bold;
 }
 
@@ -57,6 +58,16 @@ h2, h3, h4, h5, h6, .navbar-brand {
 
 .hero-section {
     padding: 60px 0;
+}
+
+.hero-image-container {
+    position: relative;
+    display: inline-block;
+}
+
+.hero-image {
+    max-width: 400px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
 }
 
 .hero-title {
