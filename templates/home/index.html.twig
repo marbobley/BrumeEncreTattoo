@@ -35,4 +35,29 @@
         </div>
     </div>
 </div>
+<div class="portfolio-preview py-5">
+    <div class="container">
+        <h2 class="text-center mb-5">Aperçu de mon travail</h2>
+        <div class="row">
+            <div class="col-md-4 mb-4">
+                <div class="portfolio-item">
+                    <img src="{{ asset('images/portfolio/dosCeci.webp') }}" alt="Tatouage dos Ceci" class="img-fluid rounded shadow-sm">
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="portfolio-item">
+                    <img src="{{ asset('images/portfolio/dosDamien.webp') }}" alt="Tatouage dos Damien" class="img-fluid rounded shadow-sm">
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="portfolio-item">
+                    <img src="{{ asset('images/portfolio/piedTulipe.webp') }}" alt="Tatouage pied Tulipe" class="img-fluid rounded shadow-sm">
+                </div>
+            </div>
+        </div>
+        <div class="text-center mt-4">
+            <a href="{{ path('app_portfolio') }}" class="btn btn-outline-primary">Voir toute la galerie</a>
+        </div>
+    </div>
+</div>
 {% endblock %}
