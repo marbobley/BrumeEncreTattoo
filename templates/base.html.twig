@@ -7,8 +7,23 @@
         <link rel="icon" href="{{ asset('favicon.ico') }}">
 
         {% block seo %}
-            <meta name="description" content="Brume d'Encre Tattoo - Salon de tatouage artistique. Découvrez nos créations uniques et prenez rendez-vous.">
+            <meta name="description" content="{% block meta_description %}Brume d'encre tattoo. Mona, tatoueuse sur aniane 34150 dans l'herault spécialisée dans le floral, fine line et l'aquarelle. ✨{% endblock %}">
             <meta name="keywords" content="tattoo, tatouage, salon de tatouage, Brume d'Encre, tatoueur">
+
+            <!-- Open Graph / Facebook -->
+            <meta property="og:type" content="website">
+            <meta property="og:url" content="{{ app.request.uri }}">
+            <meta property="og:title" content="{{ block('title') }}">
+            <meta property="og:description" content="{{ block('meta_description') }}">
+            <meta property="og:image" content="{{ absolute_url(asset('images/home-image.webp')) }}">
+
+            <!-- Twitter -->
+            <meta property="twitter:card" content="summary_large_image">
+            <meta property="twitter:url" content="{{ app.request.uri }}">
+            <meta property="twitter:title" content="{{ block('title') }}">
+            <meta property="twitter:description" content="{{ block('meta_description') }}">
+            <meta property="twitter:image" content="{{ absolute_url(asset('images/home-image.webp')) }}">
+
         {% endblock %}
 
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
