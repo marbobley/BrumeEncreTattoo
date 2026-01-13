@@ -3,8 +3,14 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>{% block title %}Brume d'Encre Tattoo Shop{% endblock %}</title>
+        <title>{% block title %}{{ site_name }} Shop{% endblock %}</title>
         <link rel="icon" href="{{ asset('favicon.ico') }}">
+
+        {% block seo %}
+            <meta name="description" content="Brume d'Encre Tattoo - Salon de tatouage artistique. Découvrez nos créations uniques et prenez rendez-vous.">
+            <meta name="keywords" content="tattoo, tatouage, salon de tatouage, Brume d'Encre, tatoueur">
+        {% endblock %}
+
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
         {% block stylesheets %}
         {% endblock %}
@@ -18,7 +24,7 @@
             <div class="container-fluid">
                 <a class="navbar-brand d-flex align-items-center" href="{{ path('app_home') }}">
                     <img src="{{ asset('images/nav-brand.webp') }}" alt="BrumeEncreTattoo" width="70" class="d-inline-block align-text-top">
-                    <span class="ms-2 d-none d-sm-inline">Brume d'Encre Tattoo</span>
+                    <span class="ms-2 d-none d-sm-inline">{{ site_name }}</span>
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -49,7 +55,7 @@
                     <a href="https://www.instagram.com/brumedencre_tattoo/?hl=fr" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
                     <a href="https://www.facebook.com/monatatoueuse" target="_blank" title="Facebook"><i class="fab fa-facebook"></i></a>
                 </div>
-                <p class="mb-0">&copy; {{ "now"|date("Y") }} Brume d'Encre Tattoo. Tous droits réservés.</p>
+                <p class="mb-0">&copy; {{ "now"|date("Y") }} {{ site_name }}. Tous droits réservés.</p>
             </div>
         </footer>
     </body>
