@@ -4,9 +4,9 @@
     --primary-color: rgba(86, 72, 107, 0.91);
     --secondary-color: #635c9b;
     --text-color: #392d22;
-    --bg-color: #e1e0dc;
+    --bg-color: #f3f3f3;
     --accent-color: #69461b;
-    --header-bg: #f7f5e7;
+    --header-bg: #e1e0dc;
 }
 
 body {
