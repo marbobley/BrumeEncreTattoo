@@ -1,20 +1,32 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello PortfolioController!{% endblock %}
+{% block title %}Galerie - {{ site_name }}{% endblock %}
+
+{% block seo %}
+    <meta name="description" content="Découvrez le portfolio de Brume d'Encre Tattoo à Aniane. Galerie de tatouages personnalisés : fine line, floral, aquarelle et bien plus.">
+    {{ parent() }}
+{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+<div class="container py-5">
+    <h1 class="text-center mb-5">Galerie Portfolio</h1>
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+    <div class="row">
+        {% for image in images %}
+            <div class="col-md-4 mb-4">
+                <div class="portfolio-card shadow-sm h-100">
+                    <img src="{{ asset('images/portfolio/' ~ image.src) }}"
+                         alt="{{ image.alt }}"
+                         class="img-fluid rounded w-100"
+                         loading="lazy">
+                </div>
+            </div>
+        {% endfor %}
+    </div>
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code>/home/nora/Documents/Projects/BrumeEncreTattoo/src/Controller/PortfolioController.php</code></li>
-        <li>Your template at <code>/home/nora/Documents/Projects/BrumeEncreTattoo/templates/portfolio/index.html.twig</code></li>
-    </ul>
+    <div class="text-center mt-5">
+        <p class="lead">Chaque pièce est unique et réalisée sur mesure.</p>
+        <a href="{{ path('app_contact') }}" class="btn btn-primary btn-lg">Discutons de votre projet</a>
+    </div>
 </div>
 {% endblock %}
