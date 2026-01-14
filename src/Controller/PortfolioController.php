@@ -18,6 +18,10 @@ final class PortfolioController extends AbstractController
             ['src' => 'meduse.webp', 'alt' => 'Tatouage méduse'],
             ['src' => 'ninja.webp', 'alt' => 'Tatouage inspiration ninja'],
             ['src' => 'rosePied.webp', 'alt' => 'Tatouage rose sur le pied'],
+            ['src' => 'textTattoo.webp', 'alt' => 'Tatouage texte sur l epaule'],
+            ['src' => 'jambaquarelle.webp', 'alt' => 'Tatouage aquarelle sur la jambe'],
+            ['src' => 'chouette.webp', 'alt' => 'Tatouage aquarelle sur la jambe'],
+            ['src' => 'avant_bras_floral.webp', 'alt' => 'Tatouage aquarelle sur la jambe'],
         ];
 
         return $this->render('portfolio/index.html.twig', [
