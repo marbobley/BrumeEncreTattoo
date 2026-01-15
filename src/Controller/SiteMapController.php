@@ -15,6 +15,8 @@ class SiteMapController extends AbstractController
     {
         $urls = [];
         $urls[] = ['loc' => $this->generateUrl('app_home')];
+        $urls[] = ['loc' => $this->generateUrl('app_contact')];
+        $urls[] = ['loc' => $this->generateUrl('app_portfolio')];
 
         return $this->render('sitemap/sitemap.xml.twig', [
             'urls' => $urls,

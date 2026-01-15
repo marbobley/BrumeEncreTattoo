@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Form\ContactType;
+use App\Service\MapServiceInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -10,12 +11,6 @@ use Symfony\Component\Mailer\Exception\TransportExceptionInterface;
 use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Mime\Email;
 use Symfony\Component\Routing\Attribute\Route;
-use Symfony\UX\Map\Bridge\Leaflet\LeafletOptions;
-use Symfony\UX\Map\Bridge\Leaflet\Option\TileLayer;
-use Symfony\UX\Map\InfoWindow;
-use Symfony\UX\Map\Map;
-use Symfony\UX\Map\Marker;
-use Symfony\UX\Map\Point;
 
 final class ContactController extends AbstractController
 {
@@ -24,7 +19,10 @@ final class ContactController extends AbstractController
      * @throws TransportExceptionInterface
      */
     #[Route('/contact', name: 'app_contact', methods: ['GET', 'POST'])]
-    public function index(Request $request, MailerInterface $mailer): Response
+    public function index(Request $request,
+                          MailerInterface $mailer,
+                          MapServiceInterface $mapService,
+    ): Response
     {
         $form = $this->createForm(ContactType::class);
         $form->handleRequest($request);
@@ -56,18 +54,7 @@ final class ContactController extends AbstractController
             return $this->redirectToRoute('app_contact');
         }
 
-        $point = new Point(43.68551114513038, 3.5850781187172367);
-        $map = (new Map('default'))
-        ->center($point)
-        ->zoom(12)
-
-        ->addMarker(new Marker(
-            position: $point,
-            title: "Brume d'Encre Tattoo",
-            infoWindow: new InfoWindow(
-                content: 'Proche de la Poste. Grand parking disponible à proximité',
-                )
-        ));
+        $map = $mapService->generateMap();
 
         return $this->render('contact/index.html.twig', [
             'map' => $map,
