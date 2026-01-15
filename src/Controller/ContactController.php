@@ -32,19 +32,22 @@ final class ContactController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $datas = $form->getData();
             $from = $datas['email'];
-            $to = 'ramdon@ram.fr';
             $name = $datas['name'];
             $content = $datas['message'];
-            $file = file_get_contents($form['attachment']->getData());
+            $attach = $form['attachment']->getData();
+            if(isset($attach))
+                $file = file_get_contents($attach);
             $subject = $datas['subject'];
 
             $email = (new Email())
                 ->from($from)
-                ->to($to)
                 ->subject($subject . ' ' . $name)
-                ->attach($file, )
                 ->text($content)
             ;
+            if(isset($file)){
+                $email->attach($file);
+            }
+
             $mailer->send($email);
             $this->addFlash('success', 'Merci ! Votre message a bien été envoyé. Je reviendrai vers vous dès que possible.');
 
