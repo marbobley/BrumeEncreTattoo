@@ -32,6 +32,7 @@ final class ContactController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $datas = $form->getData();
             $from = $datas['email'];
+            $to = 'fournier.wilf@gmail.com';
             $name = $datas['name'];
             $content = $datas['message'];
             $attach = $form['attachment']->getData();
@@ -41,6 +42,7 @@ final class ContactController extends AbstractController
 
             $email = (new Email())
                 ->from($from)
+                ->to($to)
                 ->subject($subject . ' ' . $name)
                 ->text($content)
             ;
