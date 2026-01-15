@@ -8,7 +8,7 @@ final class HomeControllerTest extends WebTestCase
 {
     public function testIndexIsSuccessful(): void
     {
-        $client = static::createClient();
+        $client = HomeControllerTest::createClient();
         $client->request('GET', '/');
 
         $this->assertResponseIsSuccessful();
@@ -16,7 +16,7 @@ final class HomeControllerTest extends WebTestCase
 
     public function testIndexContent(): void
     {
-        $client = static::createClient();
+        $client = HomeControllerTest::createClient();
         $crawler = $client->request('GET', '/');
 
         // Vérification du titre H1
@@ -51,37 +51,31 @@ final class HomeControllerTest extends WebTestCase
 
     public function testClickOnGalleryLink(): void
     {
-        $client = static::createClient();
+        $client = HomeControllerTest::createClient();
         $crawler = $client->request('GET', '/');
 
-        // On cherche le lien "Voir toute la galerie"
         $link = $crawler->selectLink('Voir toute la galerie')->link();
         $client->click($link);
 
-        // Vérification de la redirection/navigation vers la page portfolio
         $this->assertResponseIsSuccessful();
         $this->assertSelectorTextContains('h1', 'Galerie Portfolio');
         $this->assertPageTitleContains('Galerie Tatouages');
 
-        // On vérifie qu'on a bien les images du portfolio (il y en a 12 dans le contrôleur)
         $this->assertSelectorExists('.portfolio-card');
     }
 
     public function testClickOnContactLink(): void
     {
-        $client = static::createClient();
+        $client = HomeControllerTest::createClient();
         $crawler = $client->request('GET', '/');
 
-        // On cherche le lien "Contact" dans la section hero
         $link = $crawler->filter('.hero-section .btn-primary')->link();
         $client->click($link);
 
-        // Vérification de la redirection/navigation vers la page contact
         $this->assertResponseIsSuccessful();
         $this->assertSelectorTextContains('h1', 'Prendre rendez-vous');
         $this->assertPageTitleContains('Contact & RDV');
 
-        // On vérifie la présence du formulaire
         $this->assertSelectorExists('form[name="contact"]');
     }
 }
