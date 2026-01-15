@@ -12,13 +12,13 @@ use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
 class RobotTxtController extends AbstractController
 {
-    #[Route("robots.txt", name: 'robots', format: 'txt')]
+    #[Route('robots.txt', name: 'robots', format: 'txt')]
     public function robotsAction(Request $request): Response
     {
-        $sitemap = $this->generateUrl("sitemap", [], UrlGeneratorInterface::ABSOLUTE_URL);
+        $sitemap = $this->generateUrl('sitemap', [], UrlGeneratorInterface::ABSOLUTE_URL);
+
         return $this->render('robots/robots.txt.twig', [
             'sitemap' => $sitemap,
         ]);
-
     }
 }

@@ -14,37 +14,38 @@ use Symfony\Component\Routing\Attribute\Route;
 
 final class ContactController extends AbstractController
 {
-
     /**
      * @throws TransportExceptionInterface
      */
     #[Route('/contact', name: 'app_contact', methods: ['GET', 'POST'])]
     public function index(Request $request,
-                          MailerInterface $mailer,
-                          MapServiceInterface $mapService,
-    ): Response
-    {
+        MailerInterface $mailer,
+        MapServiceInterface $mapService,
+    ): Response {
         $form = $this->createForm(ContactType::class);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            /** @var array{email: string, name: string, message: string, subject: string} $datas */
             $datas = $form->getData();
             $from = $datas['email'];
             $to = 'fournier.wilf@gmail.com';
             $name = $datas['name'];
             $content = $datas['message'];
-            $attach = $form['attachment']->getData();
-            if(isset($attach))
-                $file = file_get_contents($attach);
+            $attach = $form->get('attachment')->getData();
+            $file = null;
+            if ($attach instanceof \Symfony\Component\HttpFoundation\File\UploadedFile) {
+                $file = file_get_contents($attach->getPathname());
+            }
             $subject = $datas['subject'];
 
             $email = (new Email())
                 ->from($from)
                 ->to($to)
-                ->subject($subject . ' ' . $name)
+                ->subject($subject.' '.$name)
                 ->text($content)
             ;
-            if(isset($file)){
+            if (is_string($file)) {
                 $email->attach($file);
             }
 
