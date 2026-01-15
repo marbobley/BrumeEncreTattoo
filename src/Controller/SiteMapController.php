@@ -10,7 +10,7 @@ use Symfony\Component\Routing\Attribute\Route;
 
 class SiteMapController extends AbstractController
 {
-    #[Route("sitemap.xml", name: 'sitemap', format: 'xml')]
+    #[Route('sitemap.xml', name: 'sitemap', format: 'xml')]
     public function index(): Response
     {
         $urls = [];

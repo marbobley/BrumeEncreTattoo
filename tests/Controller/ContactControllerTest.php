@@ -49,8 +49,8 @@ final class ContactControllerTest extends WebTestCase
         $buttonCrawlerNode = $crawler->selectButton('Envoyer le message');
 
         $form = $buttonCrawlerNode->form([
-            'contact[name]'    => 'John Doe',
-            'contact[email]'   => 'john@example.com',
+            'contact[name]' => 'John Doe',
+            'contact[email]' => 'john@example.com',
             'contact[subject]' => 'Projet Tatouage',
             'contact[message]' => 'Bonjour, je souhaite un tatouage floral sur l\'avant-bras.',
         ]);

@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Service;
+
 use Symfony\UX\Map\Map;
 
 interface MapServiceInterface

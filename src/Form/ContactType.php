@@ -19,7 +19,6 @@ class ContactType extends AbstractType
     {
         $builder
             ->add('name', TextType::class, [
-
                 'label' => 'Nom complet',
                 'attr' => [
                     'placeholder' => 'Votre nom',
@@ -71,7 +70,7 @@ class ContactType extends AbstractType
                         ],
                         mimeTypesMessage: 'Merci de télécharger une image valide (JPG, PNG, WEBP).',
                         maxSizeMessage: 'Le fichier est trop lourd ({{ size }} {{ suffix }}). La taille maximale autorisée est {{ limit }} {{ suffix }}.',
-                    )
+                    ),
                 ],
             ])
         ;

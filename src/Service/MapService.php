@@ -1,5 +1,7 @@
 <?php
+
 declare(strict_types=1);
+
 namespace App\Service;
 
 use Symfony\UX\Map\InfoWindow;
@@ -12,6 +14,7 @@ class MapService implements MapServiceInterface
     public function generateMap(): Map
     {
         $point = new Point(43.68551114513038, 3.5850781187172367);
+
         return (new Map('default'))
             ->center($point)
             ->zoom(12)
