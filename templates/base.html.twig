@@ -3,12 +3,13 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>{% block title %}{{ site_name }} Shop{% endblock %}</title>
+        <title>{% block title %}{{ site_name }} - Tatouage à Aniane (34){% endblock %}</title>
         <link rel="icon" href="{{ asset('favicon.ico') }}">
+        <link rel="canonical" href="{{ app.request.uri }}">
 
         {% block seo %}
-            <meta name="description" content="{% block meta_description %}Brume d'encre tattoo. Mona, tatoueuse sur aniane 34150 dans l'herault spécialisée dans le floral, fine line et l'aquarelle. ✨{% endblock %}">
-            <meta name="keywords" content="tattoo, tatouage, salon de tatouage, Brume d'Encre, tatoueur, tatoueuse, aquarelle, fine line, floral, herault, aniane, 34150, mona">
+            <meta name="description" content="{% block meta_description %}Brume d'Encre Tattoo : Mona, tatoueuse à Aniane (34150). Tatouages fins, floraux et aquarelle. Shop privé sur rendez-vous près de Montpellier.{% endblock %}">
+            <meta name="keywords" content="tatouage, tattoo, tatoueuse Aniane, tatoueur, tatoueuse, tatoueuse Hérault, fine line, floral, aquarelle, Brume d'Encre, Mona tattoo, salon tatouage 34">
 
             <!-- Open Graph / Facebook -->
             <meta property="og:type" content="website">
@@ -24,6 +25,45 @@
             <meta property="twitter:description" content="{{ block('meta_description') }}">
             <meta property="twitter:image" content="{{ absolute_url(asset('images/home-image.webp')) }}">
 
+            <script type="application/ld+json">
+            {
+                "@context": "https://schema.org",
+                "@type": "LocalBusiness",
+                "name": "{{ site_name }}",
+                "image": "{{ absolute_url(asset('images/home-image.webp')) }}",
+                "@id": "{{ url('app_home') }}",
+                "url": "{{ url('app_home') }}",
+                "telephone": "",
+                "address": {
+                    "@type": "PostalAddress",
+                    "streetAddress": "47 Boulevard Saint-Jean",
+                    "addressLocality": "Aniane",
+                    "postalCode": "34150",
+                    "addressCountry": "FR"
+                },
+                "geo": {
+                    "@type": "GeoCoordinates",
+                    "latitude": 43.6841,
+                    "longitude": 3.5857
+                },
+                "openingHoursSpecification": {
+                    "@type": "OpeningHoursSpecification",
+                    "dayOfWeek": [
+                        "Monday",
+                        "Tuesday",
+                        "Wednesday",
+                        "Thursday",
+                        "Friday",
+                        "Saturday"
+                    ],
+                    "note": "Sur rendez-vous uniquement"
+                },
+                "sameAs": [
+                    "https://www.instagram.com/brumedencre_tattoo/",
+                    "https://www.facebook.com/monatatoueuse"
+                ]
+            }
+            </script>
         {% endblock %}
 
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -63,13 +103,31 @@
             {% block body %}{% endblock %}
         </div>
 
-        <footer class="text-center">
+        <footer class="text-center py-4 bg-light">
             <div class="container">
-                <div class="social-links mb-3">
-                    <a href="https://www.instagram.com/brumedencre_tattoo/?hl=fr" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
-                    <a href="https://www.facebook.com/monatatoueuse" target="_blank" title="Facebook"><i class="fab fa-facebook"></i></a>
+                <div class="row">
+                    <div class="col-md-4 mb-3 mb-md-0">
+                        <h5>{{ site_name }}</h5>
+                        <p class="small text-muted">Shop privé de tatouage à Aniane (34). Sur rendez-vous uniquement.</p>
+                    </div>
+                    <div class="col-md-4 mb-3 mb-md-0">
+                        <h5>Liens utiles</h5>
+                        <ul class="list-unstyled">
+                            <li><a href="{{ path('app_home') }}" class="text-decoration-none text-dark">Accueil</a></li>
+                            <li><a href="{{ path('app_portfolio') }}" class="text-decoration-none text-dark">Galerie Portfolio</a></li>
+                            <li><a href="{{ path('app_contact') }}" class="text-decoration-none text-dark">Contact & RDV</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-md-4">
+                        <h5>Suivez-moi</h5>
+                        <div class="social-links">
+                            <a href="https://www.instagram.com/brumedencre_tattoo/?hl=fr" target="_blank" title="Instagram" class="me-2"><i class="fab fa-instagram fa-lg"></i></a>
+                            <a href="https://www.facebook.com/monatatoueuse" target="_blank" title="Facebook"><i class="fab fa-facebook fa-lg"></i></a>
+                        </div>
+                    </div>
                 </div>
-                <p class="mb-0">&copy; {{ "now"|date("Y") }} {{ site_name }}. Tous droits réservés.</p>
+                <hr>
+                <p class="mb-0 small">&copy; {{ "now"|date("Y") }} {{ site_name }}. Tous droits réservés. Tatoueuse à Aniane, Hérault.</p>
             </div>
         </footer>
     </body>

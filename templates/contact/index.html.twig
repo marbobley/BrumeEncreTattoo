@@ -1,6 +1,11 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Contact - {{ site_name }}{% endblock %}
+{% block title %}Contact & RDV - Tatoueuse à Aniane - {{ site_name }}{% endblock %}
+
+{% block seo %}
+    <meta name="description" content="Prenez rendez-vous chez Brume d'Encre Tattoo à Aniane. Mona vous accueille dans son shop privé près de Montpellier pour vos projets de tatouages sur mesure.">
+    {{ parent() }}
+{% endblock %}
 
 {% block body %}
 <div class="container py-5">
@@ -16,8 +21,8 @@
     <div class="row justify-content-center">
         <div class="col-md-10">
             <header class="text-center mb-5">
-                <h1 class="display-4 fw-bold mb-2">{{ site_name }}</h1>
-                <p class="h3 text-muted">Contacte moi</p>
+                <h1 class="display-4 fw-bold mb-2">Prendre rendez-vous</h1>
+                <p class="h3 text-muted">Contactez {{ site_name }}</p>
                 <div class="divider mx-auto my-4" style="width: 60px; height: 3px; background-color: var(--primary-color);"></div>
             </header>
 
@@ -33,10 +38,12 @@
                                 <div class="icon-box me-3">
                                     <i class="fas fa-location-dot fa-lg"></i>
                                 </div>
-                                <address class="mb-0">
-                                    <strong>47 Boulevard Saint-Jean</strong><br>
-                                    34150 Aniane
-                                </address>
+                                <a  class="text-decoration-none text-dark" target="_blank" href="https://www.google.com/maps/place/47+Bd+Saint-Jean,+34150+Aniane/@43.6853441,3.5824757,17z/data=!3m1!4b1!4m6!3m5!1s0x12b1576313348a7b:0x943f2ad2de6f9e86!8m2!3d43.6853402!4d3.585056!16s%2Fg%2F11x168fr1y?entry=ttu&g_ep=EgoyMDI2MDExMy4wIKXMDSoKLDEwMDc5MjA2OUgBUAM%3D">
+                                    <address class="mb-0">
+                                        <strong>47 Boulevard Saint-Jean</strong><br>
+                                        34150 Aniane
+                                    </address>
+                                </a>
                             </div>
                             <div class="d-flex align-items-center mb-3">
                                 <div class="icon-box me-3">
