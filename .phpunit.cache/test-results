@@ -1,0 +1,1 @@
+{"version":2,"defects":{"App\\Tests\\Service\\MapServiceTest::testGenerateMapReturnsMapWithCorrectCoordinates":8},"times":{"App\\Tests\\Service\\MapServiceTest::testGenerateMapReturnsMapWithCorrectCoordinates":0.014,"App\\Tests\\Controller\\HomeControllerTest::testIndexIsSuccessful":0.559,"App\\Tests\\Controller\\HomeControllerTest::testIndexContent":0.126}}
