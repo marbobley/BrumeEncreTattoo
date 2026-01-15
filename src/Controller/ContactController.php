@@ -6,6 +6,9 @@ use App\Form\ContactType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Mailer\Exception\TransportExceptionInterface;
+use Symfony\Component\Mailer\MailerInterface;
+use Symfony\Component\Mime\Email;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\UX\Map\Bridge\Leaflet\LeafletOptions;
 use Symfony\UX\Map\Bridge\Leaflet\Option\TileLayer;
@@ -16,15 +19,33 @@ use Symfony\UX\Map\Point;
 
 final class ContactController extends AbstractController
 {
+
+    /**
+     * @throws TransportExceptionInterface
+     */
     #[Route('/contact', name: 'app_contact', methods: ['GET', 'POST'])]
-    public function index(Request $request): Response
+    public function index(Request $request, MailerInterface $mailer): Response
     {
         $form = $this->createForm(ContactType::class);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            // Ici, vous pourriez ajouter la logique d'envoi d'email avec $form->getData()
-            // Pour l'instant, on ajoute juste un message flash de succès
+            $datas = $form->getData();
+            $from = $datas['email'];
+            $to = 'ramdon@ram.fr';
+            $name = $datas['name'];
+            $content = $datas['message'];
+            $file = file_get_contents($form['attachment']->getData());
+            $subject = $datas['subject'];
+
+            $email = (new Email())
+                ->from($from)
+                ->to($to)
+                ->subject($subject . ' ' . $name)
+                ->attach($file, )
+                ->text($content)
+            ;
+            $mailer->send($email);
             $this->addFlash('success', 'Merci ! Votre message a bien été envoyé. Je reviendrai vers vous dès que possible.');
 
             return $this->redirectToRoute('app_contact');
