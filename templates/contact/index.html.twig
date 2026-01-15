@@ -1,6 +1,11 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Contact - {{ site_name }}{% endblock %}
+{% block title %}Contact & RDV - Tatoueuse à Aniane - {{ site_name }}{% endblock %}
+
+{% block seo %}
+    <meta name="description" content="Prenez rendez-vous chez Brume d'Encre Tattoo à Aniane. Mona vous accueille dans son shop privé près de Montpellier pour vos projets de tatouages sur mesure.">
+    {{ parent() }}
+{% endblock %}
 
 {% block body %}
 <div class="container py-5">
@@ -16,8 +21,8 @@
     <div class="row justify-content-center">
         <div class="col-md-10">
             <header class="text-center mb-5">
-                <h1 class="display-4 fw-bold mb-2">{{ site_name }}</h1>
-                <p class="h3 text-muted">Contacte moi</p>
+                <h1 class="display-4 fw-bold mb-2">Prendre rendez-vous</h1>
+                <p class="h3 text-muted">Contactez {{ site_name }}</p>
                 <div class="divider mx-auto my-4" style="width: 60px; height: 3px; background-color: var(--primary-color);"></div>
             </header>
 
