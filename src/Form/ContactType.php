@@ -19,12 +19,13 @@ class ContactType extends AbstractType
     {
         $builder
             ->add('name', TextType::class, [
+
                 'label' => 'Nom complet',
                 'attr' => [
                     'placeholder' => 'Votre nom',
                 ],
                 'constraints' => [
-                    new NotBlank(['message' => 'Merci de renseigner votre nom.']),
+                    new NotBlank(message: 'Merci de renseigner votre nom.'),
                 ],
             ])
             ->add('email', EmailType::class, [
@@ -33,8 +34,8 @@ class ContactType extends AbstractType
                     'placeholder' => 'votre@email.com',
                 ],
                 'constraints' => [
-                    new NotBlank(['message' => 'Merci de renseigner votre email.']),
-                    new Email(['message' => 'L\'adresse email n\'est pas valide.']),
+                    new NotBlank(message: 'Merci de renseigner votre email.'),
+                    new Email(message: 'L\'adresse email n\'est pas valide.'),
                 ],
             ])
             ->add('subject', TextType::class, [
@@ -43,7 +44,7 @@ class ContactType extends AbstractType
                     'placeholder' => 'L\'objet de votre message',
                 ],
                 'constraints' => [
-                    new NotBlank(['message' => 'Merci de renseigner un sujet.']),
+                    new NotBlank(message: 'Merci de renseigner un sujet.'),
                 ],
             ])
             ->add('message', TextareaType::class, [
@@ -53,7 +54,7 @@ class ContactType extends AbstractType
                     'placeholder' => 'Décrivez votre projet...',
                 ],
                 'constraints' => [
-                    new NotBlank(['message' => 'Merci de renseigner votre message.']),
+                    new NotBlank(message: 'Merci de renseigner votre message.'),
                 ],
             ])
             ->add('attachment', FileType::class, [
@@ -61,16 +62,16 @@ class ContactType extends AbstractType
                 'mapped' => false,
                 'required' => false,
                 'constraints' => [
-                    new File([
-                        'maxSize' => '1024k',
-                        'mimeTypes' => [
+                    new File(
+                        maxSize: '1024k',
+                        mimeTypes: [
                             'image/jpeg',
                             'image/png',
                             'image/webp',
                         ],
-                        'mimeTypesMessage' => 'Merci de télécharger une image valide (JPG, PNG, WEBP).',
-                        'maxSizeMessage' => 'Le fichier est trop lourd ({{ size }} {{ suffix }}). La taille maximale autorisée est {{ limit }} {{ suffix }}.',
-                    ])
+                        mimeTypesMessage: 'Merci de télécharger une image valide (JPG, PNG, WEBP).',
+                        maxSizeMessage: 'Le fichier est trop lourd ({{ size }} {{ suffix }}). La taille maximale autorisée est {{ limit }} {{ suffix }}.',
+                    )
                 ],
             ])
         ;
