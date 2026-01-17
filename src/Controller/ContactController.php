@@ -29,7 +29,7 @@ final class ContactController extends AbstractController
             /** @var array{email: string, name: string, message: string, subject: string} $datas */
             $datas = $form->getData();
             $from = $datas['email'];
-            $to = 'fournier.wilf@gmail.com';
+            $to = 'contact@brumedencre-tattoo.fr';
             $name = $datas['name'];
             $content = $datas['message'];
             $attach = $form->get('attachment')->getData();
