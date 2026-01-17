@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Form\ContactType;
 use App\Service\MapServiceInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Mailer\Exception\TransportExceptionInterface;
@@ -34,7 +35,7 @@ final class ContactController extends AbstractController
             $content = $datas['message'];
             $attach = $form->get('attachment')->getData();
             $file = null;
-            if ($attach instanceof \Symfony\Component\HttpFoundation\File\UploadedFile) {
+            if ($attach instanceof UploadedFile) {
                 $file = file_get_contents($attach->getPathname());
             }
             $subject = $datas['subject'];
@@ -42,7 +43,7 @@ final class ContactController extends AbstractController
             $email = (new Email())
                 ->from($from)
                 ->to($to)
-                ->subject($subject.' '.$name)
+                ->subject($subject.' '.$datas['email'].' '.$name)
                 ->text($content)
             ;
             if (is_string($file)) {
