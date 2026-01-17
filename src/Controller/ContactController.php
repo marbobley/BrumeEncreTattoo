@@ -28,7 +28,7 @@ final class ContactController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             /** @var array{email: string, name: string, message: string, subject: string} $datas */
             $datas = $form->getData();
-            $from = $datas['email'];
+            $from = 'contact@brumedencre-tattoo.fr'; // $datas['email'];
             $to = 'contact@brumedencre-tattoo.fr';
             $name = $datas['name'];
             $content = $datas['message'];
