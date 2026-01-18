@@ -26,8 +26,8 @@ final class ContactController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            /** @var array{email: string, name: string, message: string, subject: string} $datas */
-            $datas = $form->getData();
+            /** @var \App\Dto\ContactDto $contactDto */
+            $contactDto = $form->getData();
 
             $attach = $form->get('attachment')->getData();
             $fileContent = null;
@@ -35,7 +35,7 @@ final class ContactController extends AbstractController
                 $fileContent = file_get_contents($attach->getPathname()) ?: null;
             }
 
-            $emailService->sendContactEmail($datas, $fileContent);
+            $emailService->sendContactEmail($contactDto, $fileContent);
 
             $this->addFlash('success', 'Merci ! Votre message a bien été envoyé. Je reviendrai vers vous dès que possible.');
 

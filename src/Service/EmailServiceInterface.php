@@ -4,11 +4,13 @@ declare(strict_types=1);
 
 namespace App\Service;
 
+use App\Dto\ContactDto;
+
 interface EmailServiceInterface
 {
     /**
-     * @param array{email: string, name: string, subject: string, message: string} $data
+     * @param ContactDto $contactDto
      * @param string|null $attachmentContent Contenu binaire de la pièce jointe
      */
-    public function sendContactEmail(array $data, ?string $attachmentContent = null): void;
+    public function sendContactEmail(ContactDto $contactDto, ?string $attachmentContent = null): void;
 }
