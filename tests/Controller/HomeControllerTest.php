@@ -23,7 +23,10 @@ final class HomeControllerTest extends WebTestCase
         $this->assertSelectorTextContains('h1', 'Brume d\'Encre Tattoo');
 
         // Vérification du titre de la page
-        $this->assertPageTitleContains('Brume d\'Encre Tattoo');
+        $this->assertPageTitleContains('Tatoueuse à Aniane (34) - Brume d\'Encre Tattoo');
+
+        // Vérification de la meta description
+        $this->assertSelectorExists('meta[name="description"][content*="Brume d\'Encre Tattoo : Mona, tatoueuse à Aniane (34)"]');
 
         // Vérification de la navigation
         $this->assertSelectorExists('nav');
@@ -59,7 +62,8 @@ final class HomeControllerTest extends WebTestCase
 
         $this->assertResponseIsSuccessful();
         $this->assertSelectorTextContains('h1', 'Galerie Portfolio');
-        $this->assertPageTitleContains('Galerie Tatouages');
+        $this->assertPageTitleContains('Galerie Tatouages : Fine line, Floral et Dentelle');
+        $this->assertSelectorExists('meta[name="description"][content*="Explorez la galerie de Brume d\'Encre Tattoo"]');
 
         $this->assertSelectorExists('.portfolio-card');
     }
@@ -74,7 +78,8 @@ final class HomeControllerTest extends WebTestCase
 
         $this->assertResponseIsSuccessful();
         $this->assertSelectorTextContains('h1', 'Prendre rendez-vous');
-        $this->assertPageTitleContains('Contact & RDV');
+        $this->assertPageTitleContains('Contact et Devis Tatouage');
+        $this->assertSelectorExists('meta[name="description"][content*="Prendre rendez-vous chez Brume d\'Encre Tattoo"]');
 
         $this->assertSelectorExists('form[name="contact"]');
     }

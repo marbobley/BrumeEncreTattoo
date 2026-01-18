@@ -33,6 +33,6 @@ final class SiteMapControllerTest extends WebTestCase
         $this->assertStringContainsString('<priority>0.5</priority>', $content);
 
         $lastmod = (new \DateTime())->format('Y-m-d');
-        $this->assertStringContainsString('<lastmod>' . $lastmod . '</lastmod>', $content);
+        $this->assertStringContainsString('<lastmod>'.$lastmod.'</lastmod>', $content);
     }
 }

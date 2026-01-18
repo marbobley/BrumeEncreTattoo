@@ -20,7 +20,10 @@ final class ContactControllerTest extends WebTestCase
         $crawler = $client->request('GET', '/contact');
 
         $this->assertSelectorTextContains('h1', 'Prendre rendez-vous');
-        $this->assertPageTitleContains('Contact & RDV');
+        $this->assertPageTitleContains('Contact et Devis Tatouage');
+
+        // Vérification de la meta description
+        $this->assertSelectorExists('meta[name="description"][content*="Prendre rendez-vous chez Brume d\'Encre Tattoo"]');
 
         $this->assertSelectorTextContains('.contact-info', 'Le Studio');
         $this->assertSelectorTextContains('.contact-info', '47 Boulevard Saint-Jean');

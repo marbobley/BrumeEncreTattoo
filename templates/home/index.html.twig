@@ -1,9 +1,9 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Tatoueuse à Aniane (34) - {{ site_name }}{% endblock %}
+{% block title %}Tatoueuse à Aniane (34) - Brume d'Encre Tattoo : Fine line, floral et aquarelle{% endblock %}
 
 {% block seo %}
-    <meta name="description" content="Découvrez Brume d'Encre Tattoo, studio de tatouage privé à Aniane (34). Mona réalise vos projets personnalisés : fine line, floral et aquarelle près de Montpellier.">
+    <meta name="description" content="{% block meta_description %}Brume d'Encre Tattoo : Mona, tatoueuse à Aniane (34). Spécialiste du tatouage fin, floral et aquarelle près de Montpellier. Projets personnalisés en shop privé.{% endblock %}">
     {{ parent() }}
 {% endblock %}
 

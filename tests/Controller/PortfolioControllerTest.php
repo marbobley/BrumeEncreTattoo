@@ -21,7 +21,11 @@ final class PortfolioControllerTest extends WebTestCase
 
         // Vérification des titres
         $this->assertSelectorTextContains('h1', 'Galerie Portfolio');
-        $this->assertPageTitleContains('Galerie Tatouages');
+        $this->assertPageTitleContains('Galerie Tatouages : Fine line, Floral et Dentelle');
+
+        // Vérification de la meta description
+        $this->assertSelectorExists('meta[name="description"][content*="Explorez la galerie de Brume d\'Encre Tattoo"]');
+
         $this->assertCount(12, $crawler->filter('.portfolio-card'));
 
         $this->assertSelectorExists('.portfolio-card img');

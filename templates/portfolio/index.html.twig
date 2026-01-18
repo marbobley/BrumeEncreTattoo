@@ -1,9 +1,9 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Galerie Tatouages - Fine Line & Floral à Aniane - {{ site_name }}{% endblock %}
+{% block title %}Galerie Tatouages : Fine line, Floral et Dentelle à Aniane - Brume d'Encre Tattoo{% endblock %}
 
 {% block seo %}
-    <meta name="description" content="Découvrez le portfolio de Brume d'Encre Tattoo à Aniane. Galerie de tatouages personnalisés près de Montpellier : fine line, floral, dentelle et aquarelle.">
+    <meta name="description" content="{% block meta_description %}Explorez la galerie de Brume d'Encre Tattoo à Aniane. Découvrez nos réalisations de tatouages fins, floraux, dentelles et aquarelles sur mesure.{% endblock %}">
     {{ parent() }}
 {% endblock %}
 
