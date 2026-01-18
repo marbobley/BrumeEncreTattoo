@@ -8,7 +8,9 @@
         <link rel="canonical" href="{{ app.request.uri }}">
 
         {% block seo %}
-            <meta name="description" content="{% block meta_description %}Brume d'Encre Tattoo : Mona, tatoueuse à Aniane (34150). Tatouages fins, floraux et aquarelle. Shop privé sur rendez-vous près de Montpellier.{% endblock %}">
+            {% block meta_description_tag %}
+                <meta name="description" content="{% block meta_description %}Brume d'Encre Tattoo : Mona, tatoueuse à Aniane (34150). Tatouages fins, floraux et aquarelle. Shop privé sur rendez-vous près de Montpellier.{% endblock %}">
+            {% endblock %}
             <meta name="keywords" content="tatouage, tattoo, tatoueuse Aniane, tatoueur, tatoueuse, tatoueuse Hérault, fine line, floral, aquarelle, Brume d'Encre, Mona tattoo, salon tatouage 34">
 
             <!-- Open Graph / Facebook -->
