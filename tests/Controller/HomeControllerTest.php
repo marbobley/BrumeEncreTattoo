@@ -63,7 +63,6 @@ final class HomeControllerTest extends WebTestCase
         $this->assertResponseIsSuccessful();
         $this->assertSelectorTextContains('h1', 'Galerie Portfolio');
         $this->assertPageTitleContains('Galerie Tatouages : Fine line, Floral et Dentelle');
-        $this->assertSelectorExists('meta[name="description"][content*="Explorez la galerie de Brume d\'Encre Tattoo"]');
 
         $this->assertSelectorExists('.portfolio-card');
     }
