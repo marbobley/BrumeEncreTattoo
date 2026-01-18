@@ -63,3 +63,5 @@ phpstan.neon
 ###< phpstan/phpstan ###
 
 .phpunit.cache/
+
+.idea/laravel-idea.xml

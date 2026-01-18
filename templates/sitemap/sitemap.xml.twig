@@ -3,17 +3,15 @@
     {# On boucle sur les URLs #}
     {% for url in urls %}
         <url>
-            <loc>
-                {{ url.loc }}
-            </loc>
+            <loc>{{ url.loc }}</loc>
             {% if url.lastmod is defined %}
-                <lastmod>{{url.lastmod}}</lastmod>
+                <lastmod>{{ url.lastmod }}</lastmod>
             {% endif %}
             {% if url.changefreq is defined %}
-                <changefreq>{{url.changefreq}}</changefreq>
+                <changefreq>{{ url.changefreq }}</changefreq>
             {% endif %}
             {% if url.priority is defined %}
-                <priority>{{url.priority}}</priority>
+                <priority>{{ url.priority }}</priority>
             {% endif %}
         </url>
     {% endfor %}

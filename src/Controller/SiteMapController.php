@@ -8,18 +8,43 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
+use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
+
 class SiteMapController extends AbstractController
 {
     #[Route('sitemap.xml', name: 'sitemap', format: 'xml')]
     public function index(): Response
     {
         $urls = [];
-        $urls[] = ['loc' => $this->generateUrl('app_home')];
-        $urls[] = ['loc' => $this->generateUrl('app_contact')];
-        $urls[] = ['loc' => $this->generateUrl('app_portfolio')];
+        $lastmod = (new \DateTime())->format('Y-m-d');
 
-        return $this->render('sitemap/sitemap.xml.twig', [
+        $urls[] = [
+            'loc' => $this->generateUrl('app_home', [], UrlGeneratorInterface::ABSOLUTE_URL),
+            'lastmod' => $lastmod,
+            'changefreq' => 'monthly',
+            'priority' => '1.0',
+        ];
+
+        $urls[] = [
+            'loc' => $this->generateUrl('app_portfolio', [], UrlGeneratorInterface::ABSOLUTE_URL),
+            'lastmod' => $lastmod,
+            'changefreq' => 'monthly',
+            'priority' => '0.8',
+        ];
+
+        $urls[] = [
+            'loc' => $this->generateUrl('app_contact', [], UrlGeneratorInterface::ABSOLUTE_URL),
+            'lastmod' => $lastmod,
+            'changefreq' => 'yearly',
+            'priority' => '0.5',
+        ];
+
+        $response = $this->render('sitemap/sitemap.xml.twig', [
             'urls' => $urls,
         ]);
+
+        $response->headers->set('Content-Type', 'application/xml');
+
+        return $response;
     }
 }
