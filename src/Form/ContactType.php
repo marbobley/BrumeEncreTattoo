@@ -2,6 +2,7 @@
 
 namespace App\Form;
 
+use App\Dto\ContactDto;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
@@ -9,9 +10,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Validator\Constraints\Email;
 use Symfony\Component\Validator\Constraints\File;
-use Symfony\Component\Validator\Constraints\NotBlank;
 
 class ContactType extends AbstractType
 {
@@ -23,18 +22,11 @@ class ContactType extends AbstractType
                 'attr' => [
                     'placeholder' => 'Votre nom',
                 ],
-                'constraints' => [
-                    new NotBlank(message: 'Merci de renseigner votre nom.'),
-                ],
             ])
             ->add('email', EmailType::class, [
                 'label' => 'Email',
                 'attr' => [
                     'placeholder' => 'votre@email.com',
-                ],
-                'constraints' => [
-                    new NotBlank(message: 'Merci de renseigner votre email.'),
-                    new Email(message: 'L\'adresse email n\'est pas valide.'),
                 ],
             ])
             ->add('subject', TextType::class, [
@@ -42,18 +34,12 @@ class ContactType extends AbstractType
                 'attr' => [
                     'placeholder' => 'L\'objet de votre message',
                 ],
-                'constraints' => [
-                    new NotBlank(message: 'Merci de renseigner un sujet.'),
-                ],
             ])
             ->add('message', TextareaType::class, [
                 'label' => 'Message',
                 'attr' => [
                     'rows' => 5,
                     'placeholder' => 'Décrivez votre projet...',
-                ],
-                'constraints' => [
-                    new NotBlank(message: 'Merci de renseigner votre message.'),
                 ],
             ])
             ->add('attachment', FileType::class, [
@@ -79,7 +65,7 @@ class ContactType extends AbstractType
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            // Configure your form options here
+            'data_class' => ContactDto::class,
         ]);
     }
 }
