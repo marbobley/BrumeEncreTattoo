@@ -1,0 +1,15 @@
+<html>
+<head></head>
+<body>
+<p>Le client suivant vous a envoyé un mail :</p>
+<p>Nom : {{ contact.name }} - {{ contact.email }}</p>
+<p>Objet : {{ contact.subject }}</p>
+<p><a href="mailto:{{ contact.email }}">Répondre</a></p>
+</body>
+</html>
+
+
+
+
+Message:
+{{ contact.message }}

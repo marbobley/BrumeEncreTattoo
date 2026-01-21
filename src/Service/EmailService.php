@@ -5,9 +5,10 @@ declare(strict_types=1);
 namespace App\Service;
 
 use App\Dto\ContactDto;
+use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Component\Mailer\Exception\TransportExceptionInterface;
 use Symfony\Component\Mailer\MailerInterface;
-use Symfony\Component\Mime\Email;
+use Symfony\Component\Mime\Address;
 
 class EmailService implements EmailServiceInterface
 {
@@ -22,11 +23,19 @@ class EmailService implements EmailServiceInterface
      */
     public function sendContactEmail(ContactDto $contactDto, ?string $attachmentContent = null): void
     {
-        $email = (new Email())
-            ->from($this->contactEmail)
-            ->to($this->contactEmail)
-            ->subject(sprintf('%s %s %s', $contactDto->subject, $contactDto->email, $contactDto->name))
-            ->text((string) $contactDto->message);
+        $adresseBrume = new Address($this->contactEmail, "Brume d'Encre");
+
+        $email = (new TemplatedEmail())
+            ->from($adresseBrume,
+                new Address($contactDto->email, $contactDto->name))
+            ->to($adresseBrume)
+            ->subject($contactDto->subject)
+            ->textTemplate('Email/contact-email.txt.twig')
+            ->htmlTemplate('Email/contact-email.html.twig')
+            ->context([
+                'contact' => $contactDto,
+            ])
+        ;
 
         if (null !== $attachmentContent) {
             $email->attach($attachmentContent);
