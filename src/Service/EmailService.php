@@ -26,8 +26,7 @@ class EmailService implements EmailServiceInterface
         $adresseBrume = new Address($this->contactEmail, "Brume d'Encre");
 
         $email = (new TemplatedEmail())
-            ->from($adresseBrume,
-                new Address($contactDto->email, $contactDto->name))
+            ->from($adresseBrume)
             ->to($adresseBrume)
             ->subject($contactDto->subject)
             ->textTemplate('Email/contact-email.txt.twig')
