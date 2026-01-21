@@ -4,7 +4,7 @@
 <p>Le client suivant vous a envoyé un mail :</p>
 <p>Nom : {{ contact.name }} - {{ contact.email }}</p>
 <p>Objet : {{ contact.subject }}</p>
-<p><a href="mailto:{{ contact.email }}">Répondre</a></p>
+<p><a href="mailto:{{ contact.email }}?subject=Prise de contact : {{ contact.subject }}&body=Salut">Répondre</a></p>
 </body>
 </html>
 
