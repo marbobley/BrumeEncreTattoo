@@ -31,11 +31,13 @@ final class ContactController extends AbstractController
 
             $attach = $form->get('attachment')->getData();
             $fileContent = null;
+            $fileName = null;
             if ($attach instanceof UploadedFile) {
                 $fileContent = file_get_contents($attach->getPathname()) ?: null;
+                $fileName = $attach->getClientOriginalName();
             }
 
-            $emailService->sendContactEmail($contactDto, $fileContent);
+            $emailService->sendContactEmail($contactDto, $fileContent, $fileName);
 
             $this->addFlash('success', 'Merci ! Votre message a bien été envoyé. Je reviendrai vers vous dès que possible.');
 
