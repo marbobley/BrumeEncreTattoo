@@ -10,8 +10,7 @@ interface EmailServiceInterface
 {
     /**
      * @param ContactDto $contactDto
-     * @param string|null $attachmentContent Contenu binaire de la pièce jointe
-     * @param string|null $attachmentFileName Nom de la pièce jointe
+     * @param array<int, array{content: string, fileName: string}> $attachments
      */
-    public function sendContactEmail(ContactDto $contactDto, ?string $attachmentContent = null, ?string $attachmentFileName = null): void;
+    public function sendContactEmail(ContactDto $contactDto, array $attachments = []): void;
 }

@@ -37,7 +37,7 @@ final class ContactControllerTest extends WebTestCase
         $this->assertSelectorExists('input[name="contact[email]"]');
         $this->assertSelectorExists('input[name="contact[subject]"]');
         $this->assertSelectorExists('textarea[name="contact[message]"]');
-        $this->assertSelectorExists('input[name="contact[attachment]"]');
+        $this->assertSelectorExists('input[name="contact[attachment][]"]');
         $this->assertSelectorExists('button[type="submit"]');
 
         $this->assertSelectorTextContains('.useful-info-section', 'Les infos utiles pour ton projet');

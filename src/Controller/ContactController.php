@@ -6,6 +6,7 @@ use App\Form\ContactType;
 use App\Service\EmailServiceInterface;
 use App\Service\MapServiceInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Form\FormError;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -29,19 +30,28 @@ final class ContactController extends AbstractController
             /** @var \App\Dto\ContactDto $contactDto */
             $contactDto = $form->getData();
 
-            $attach = $form->get('attachment')->getData();
-            $fileContent = null;
-            $fileName = null;
-            if ($attach instanceof UploadedFile) {
-                $fileContent = file_get_contents($attach->getPathname()) ?: null;
-                $fileName = $attach->getClientOriginalName();
+            /** @var UploadedFile[] $attachments */
+            $attachments = $form->get('attachment')->getData();
+            $processedAttachments = [];
+            $totalSize = 0;
+
+            foreach ($attachments as $attach) {
+                $totalSize += $attach->getSize();
+                $processedAttachments[] = [
+                    'content' => file_get_contents($attach->getPathname()) ?: '',
+                    'fileName' => $attach->getClientOriginalName(),
+                ];
             }
 
-            $emailService->sendContactEmail($contactDto, $fileContent, $fileName);
+            if ($totalSize > 1024 * 1024) {
+                $form->get('attachment')->addError(new FormError('La taille totale des images ne doit pas dépasser 1 Mo.'));
+            } else {
+                $emailService->sendContactEmail($contactDto, $processedAttachments);
 
-            $this->addFlash('success', 'Merci ! Votre message a bien été envoyé. Je reviendrai vers vous dès que possible.');
+                $this->addFlash('success', 'Merci ! Votre message a bien été envoyé. Je reviendrai vers vous dès que possible.');
 
-            return $this->redirectToRoute('app_contact');
+                return $this->redirectToRoute('app_contact');
+            }
         }
 
         $map = $mapService->generateMap();

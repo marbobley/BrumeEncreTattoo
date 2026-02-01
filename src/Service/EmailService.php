@@ -21,7 +21,7 @@ class EmailService implements EmailServiceInterface
     /**
      * @throws TransportExceptionInterface
      */
-    public function sendContactEmail(ContactDto $contactDto, ?string $attachmentContent = null, ?string $attachmentFileName = null): void
+    public function sendContactEmail(ContactDto $contactDto, array $attachments = []): void
     {
         $adresseBrume = new Address($this->contactEmail, "Brume d'Encre");
 
@@ -36,8 +36,8 @@ class EmailService implements EmailServiceInterface
             ])
         ;
 
-        if (null !== $attachmentContent) {
-            $email->attach($attachmentContent, $attachmentFileName);
+        foreach ($attachments as $attachment) {
+            $email->attach($attachment['content'], $attachment['fileName']);
         }
 
         $this->mailer->send($email);

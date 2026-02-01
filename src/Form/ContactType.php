@@ -10,6 +10,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints\All;
 use Symfony\Component\Validator\Constraints\File;
 
 class ContactType extends AbstractType
@@ -43,20 +44,23 @@ class ContactType extends AbstractType
                 ],
             ])
             ->add('attachment', FileType::class, [
-                'label' => 'Image d\'inspiration (optionnel)',
+                'label' => 'Images d\'inspiration (optionnel, max 1 Mo total)',
                 'mapped' => false,
                 'required' => false,
+                'multiple' => true,
                 'constraints' => [
-                    new File(
-                        maxSize: '1024k',
-                        mimeTypes: [
-                            'image/jpeg',
-                            'image/png',
-                            'image/webp',
-                        ],
-                        mimeTypesMessage: 'Merci de télécharger une image valide (JPG, PNG, WEBP).',
-                        maxSizeMessage: 'Le fichier est trop lourd ({{ size }} {{ suffix }}). La taille maximale autorisée est {{ limit }} {{ suffix }}.',
-                    ),
+                    new All([
+                        new File(
+                            maxSize: '1024k',
+                            mimeTypes: [
+                                'image/jpeg',
+                                'image/png',
+                                'image/webp',
+                            ],
+                            mimeTypesMessage: 'Merci de télécharger une image valide (JPG, PNG, WEBP).',
+                            maxSizeMessage: 'Le fichier est trop lourd ({{ size }} {{ suffix }}). La taille maximale autorisée est {{ limit }} {{ suffix }}.',
+                        ),
+                    ]),
                 ],
             ])
         ;
