@@ -67,7 +67,8 @@
             <div class="contact-form-section bg-white p-4 p-md-5 shadow-sm rounded mb-5">
                 <h2 class="text-center mb-4">Envoyez-moi un message</h2>
                 <p class="text-center mb-5">Pour prendre contact avec moi, tu peux m’envoyer un message via les réseaux sociaux (<a href="https://www.instagram.com/brumedencre_tattoo/?hl=fr" target="_blank" class="fw-bold">Instagram</a> ou <a href="https://www.facebook.com/monatatoueuse" target="_blank" class="fw-bold">Facebook</a>) ou utiliser le formulaire ci-dessous.</p>
-                <p class="text-center text-danger mb-5">Attention ! Les mails peuvent aller dans ton spam.</p>
+                <p class="text-center mb-5">Je réponds en général au bout d'une semaine max, si passé ce délai, tu n'as pas de réponse, tu peux me renvoyer un message.</p>
+
 
                 {{ form_start(contactForm, {'attr': {'class': 'row g-3'}}) }}
                     <div class="col-md-6">
@@ -97,6 +98,12 @@
                     </div>
                     <div class="col-12 text-center mt-4">
                         <button type="submit" class="btn btn-primary btn-lg px-5">Envoyer le message</button>
+
+                        <p></p>
+                        
+                        <div class="alert alert-danger" role="alert">
+                            Attention ! Les mails peuvent aller dans tes spams.
+                        </div>
                     </div>
                 {{ form_end(contactForm) }}
             </div>
